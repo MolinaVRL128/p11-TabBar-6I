@@ -1,43 +1,86 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const AppMiTapBar());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class AppMiTapBar extends StatelessWidget {
+  const AppMiTapBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        // useMaterial3: true,
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      title: "Ejemplo TapBar Reyna Molina",
+      theme: ThemeData(primarySwatch: Colors.red),
+      home: MiPaginaInicial(),
     );
   }
-}
+} //Fin de AppMiTapBar
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+class MiPaginaInicial extends StatefulWidget {
+  const MiPaginaInicial({Key? key}) : super(key: key);
 
   @override
+  State<MiPaginaInicial> createState() => _MiPaginaInicialState();
+} //MiPaginaInicial
+
+class _MiPaginaInicialState extends State<MiPaginaInicial> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("TabBar Reyna Molina"),
+          centerTitle: true,
+          bottom: const TabBar(
+            tabs: [
+              Tab(
+                text: "Pasteles",
+                icon: Icon(Icons.cake_outlined),
+              ),
+              Tab(
+                text: "Sabores",
+                icon: Icon(Icons.list_alt_outlined),
+              ),
+              Tab(
+                text: "Precios",
+                icon: Icon(Icons.price_change_outlined),
+              ),
+              Tab(
+                text: "Agendar",
+                icon: Icon(Icons.calendar_today),
+              ),
+            ], //Fin de tabs
+          ), //Fin Bottom TapBar
         ),
-      ),
-    );
-  }
-}
+        body: TabBarView(children: const <Widget>[
+          Center(
+            child: Text(
+              "Red velvet",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+          ),
+          Center(
+            child: Text(
+              "Coco",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+          ),
+          Center(
+            child: Text(
+              "1500",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+          ),
+          Center(
+            child: Text(
+              "14 / 02 / 2024",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+          ),
+        ] //Jardín de niños
+            ), //Fin de TabBarView
+      ), //Fin de Scaffold
+    ); //DefaultTabController
+  } //Fin Widget
+} // _MiPaginaInicialState
